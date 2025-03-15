@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   mapquiz-mysql:
@@ -15,10 +14,14 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     networks:
       - mapquiz-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
 
   mapquiz-node:
     build:
-      context: ./backend  # backendディレクトリをビルド対象に
+      context: .  # backendディレクトリをビルド対象に
       dockerfile: Dockerfile
     container_name: mapquiz-node-container
     working_dir: /app
@@ -28,7 +31,8 @@ services:
       - "3000:3000"
     command: ["npm", "run", "dev"]
     depends_on:
-      - mapquiz-mysql
+      mapquiz-mysql:
+        condition: service_healthy
     env_file:
       - .env
     networks:
