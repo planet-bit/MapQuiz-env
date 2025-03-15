@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mapquiz-mysql:
+    image: mysql:8
+    container_name: mapquiz-mysql-container
+    restart: always
+    env_file: 
+      - .env
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - mapquiz-network
+
+  mapquiz-node:
+    build:
+      context: ./backend  # backendディレクトリをビルド対象に
+      dockerfile: Dockerfile
+    container_name: mapquiz-node-container
+    working_dir: /app
+    volumes:
+      - ../MapQuiz-backend:/app  # バックエンドコードをマウント
+    ports:
+      - "3000:3000"
+    command: ["npm", "run", "dev"]
+    depends_on:
+      - mapquiz-mysql
+    env_file:
+      - .env
+    networks:
+      - mapquiz-network
+
+volumes:
+  mysql_data:
+
+networks:
+  mapquiz-network:
+    driver: bridge
