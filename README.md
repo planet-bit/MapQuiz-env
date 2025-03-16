@@ -14,16 +14,19 @@ MapQuiz-envリポジトリは、MapQuizアプリケーションに必要な環�
 ### インストール手順
 
 1. バックエンドリポジトリをクローン
+
    まず、MapQuiz-backend リポジトリをクローンします。このリポジトリは、API提供を担当します。
 
    ```sh
    git clone https://github.com/planet-bit/MapQuiz-backend.git
    cd MapQuiz-backend
+   npm install
+   cd ..
    ```
 
 2. リポジトリをクローン
 
-   最初に MapQuiz-env リポジトリをクローンします。
+   次にMapQuiz-env リポジトリをクローンします。
 
    ```sh
    git clone https://github.com/planet-bit/MapQuiz-env.git
@@ -39,7 +42,14 @@ MapQuiz-envリポジトリは、MapQuizアプリケーションに必要な環�
 
    .env ファイルには、バックエンドやデータベースの接続設定など、環境に依存する重要な情報が格納されています。必要に応じて設定を変更してください。
 
-4. Dockerコンテナの起動
+4. 必要なパッケージをインストールします
+
+   ```sh
+   npm install
+   ```
+
+
+5. Dockerコンテナの起動
 
    Docker Composeを使用して、すべてのコンテナ（バックエンド、フロントエンド、データベース）を立ち上げます。
 
@@ -54,12 +64,13 @@ MapQuiz-envリポジトリは、MapQuizアプリケーションに必要な環�
 
    コンテナが正常に起動すると、バックエンドはポート 3000 で動作を開始します。
 
-5. サービスの確認
-   コンテナが起動したら、ブラウザで以下のURLにアクセスして、バックエンドAPIが正常に動作していることを確認します：
+6. バックエンドアプリの確認
 
-   ```sh
-   http://localhost:3000
-   ```
+   コンテナが起動した後、Node.jsのバックエンドアプリケーションが実行されます。
+   
+   mapquiz-node-containerがポート番号3000でリッスンします。
+   
+   ブラウザでは、[http://localhost:3000](http://localhost:3000) を開いて、APIが動作していることを確認してください。
    
 ## 設定項目
 
