@@ -49,8 +49,10 @@ DROP TABLE IF EXISTS `language_letters`;
 CREATE TABLE `language_letters` (
   `id` int NOT NULL AUTO_INCREMENT,
   `letters` varchar(100) NOT NULL,
-  `country_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  `country_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `language_letters_countries_FK` (`country_code`),
+  CONSTRAINT `language_letters_countries_FK` FOREIGN KEY (`country_code`) REFERENCES `countries` (`country_code`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=233 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -75,8 +77,10 @@ CREATE TABLE `places` (
   `id` int NOT NULL AUTO_INCREMENT,
   `local_name` varchar(100) NOT NULL,
   `english_name` varchar(100) NOT NULL,
-  `country_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  `country_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `places_countries_FK` (`country_code`),
+  CONSTRAINT `places_countries_FK` FOREIGN KEY (`country_code`) REFERENCES `countries` (`country_code`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=140141 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -86,8 +90,40 @@ CREATE TABLE `places` (
 
 LOCK TABLES `places` WRITE;
 /*!40000 ALTER TABLE `places` DISABLE KEYS */;
-INSERT INTO `places` VALUES (1,'Москва','Moscow','ru'),(2,'Санкт-Петербург','Saint Petersburg','ru'),(3,'Республика Татарстан','Republic of Tatarstan','ru'),(4,'Республика Башкортостан','Republic of Bashkortostan','ru'),(5,'Краснодарский край','Krasnodar Krai','ru'),(6,'Ростовская область','Rostov Oblast','ru'),(7,'Волгоградская область','Volgograd Oblast','ru'),(8,'Свердловская область','Sverdlovsk Oblast','ru'),(9,'Челябинская область','Chelyabinsk Oblast','ru'),(10,'Татарстан','Tatarstan','ru'),(11,'Пермский край','Perm Krai','ru'),(12,'Оренбургская область','Orenburg Oblast','ru'),(13,'Кемеровская область','Kemerovo Oblast','ru'),(14,'Ульяновская область','Ulyanovsk Oblast','ru'),(15,'Самарская область','Samara Oblast','ru'),(16,'Иркутская область','Irkutsk Oblast','ru'),(17,'Тамбовская область','Tambov Oblast','ru'),(18,'Рязанская область','Ryazan Oblast','ru'),(19,'Мурманская область','Murmansk Oblast','ru'),(20,'Калининградская область','Kaliningrad Oblast','ru'),(21,'Вологодская область','Vologda Oblast','ru'),(22,'Ленинградская область','Leningrad Oblast','ru'),(23,'Ярославская область','Yaroslavl Oblast','ru'),(24,'Костромская область','Kostroma Oblast','ru'),(25,'Нижегородская область','Nizhny Novgorod Oblast','ru'),(26,'Саратовская область','Saratov Oblast','ru'),(27,'Тюменская область','Tyumen Oblast','ru'),(28,'Архангельская область','Arkhangelsk Oblast','ru'),(29,'Псковская область','Pskov Oblast','ru'),(30,'Новосибирская область','Novosibirsk Oblast','ru'),(31,'Московская область','Moscow Oblast','ru'),(32,'Брянская область','Bryansk Oblast','ru'),(33,'Омская область','Omsk Oblast','ru'),(34,'Курская область','Kursk Oblast','ru'),(35,'Смоленская область','Smolensk Oblast','ru'),(36,'Тверская область','Tver Oblast','ru'),(37,'Калужская область','Kaluga Oblast','ru'),(38,'Воронежская область','Voronezh Oblast','ru'),(39,'Белгородская область','Belgorod Oblast','ru'),(40,'Костромская область','Kostroma Oblast','ru'),(41,'Астраханская область','Astrakhan Oblast','ru'),(42,'Республика Саха','Republic of Sakha','ru'),(43,'Хабаровский край','Khabarovsk Krai','ru'),(44,'Алтайский край','Altai Krai','ru'),(45,'Ставропольский край','Stavropol Krai','ru'),(46,'Вологодская область','Vologda Oblast','ru'),(47,'Северная Осетия','North Ossetia','ru'),(48,'Иркутская область','Irkutsk Oblast','ru'),(49,'Чеченская Республика','Chechen Republic','ru'),(50,'Дагестан','Dagestan','ru'),(51,'Кабардино-Балкарская Республика','Kabardino-Balkar Republic','ru'),(52,'Северная Осетия','North Ossetia','ru'),(53,'Калмыкия','Kalmykia','ru'),(54,'Тува','Tuva','ru'),(55,'Марий Эл','Mari El','ru'),(56,'Чувашская Республика','Chuvash Republic','ru'),(57,'Адыгея','Adygea','ru'),(58,'Карачаево-Черкесская Республика','Karachay-Cherkess Republic','ru'),(59,'Республика Коми','Republic of Komi','ru'),(60,'Башкортостан','Bashkortostan','ru'),(61,'Республика Мордовия','Republic of Mordovia','ru'),(62,'Удмуртская Республика','Udmurt Republic','ru'),(63,'Республика Калмыкия','Republic of Kalmykia','ru'),(64,'Республика Алтай','Republic of Altai','ru'),(65,'Липецкая область','Lipetsk Oblast','ru'),(66,'Томская область','Tomsk Oblast','ru'),(67,'Новгородская область','Novgorod Oblast','ru'),(68,'Курганская область','Kurgan Oblast','ru'),(69,'Забайкальский край','Zabaykalsky Krai','ru'),(70,'Еврейская автономная область','Jewish Autonomous Oblast','ru'),(71,'Астраханская область','Astrakhan Oblast','ru'),(72,'Амурская область','Amur Oblast','ru'),(73,'Пензенская область','Penza Oblast','ru'),(74,'Кемеровская область','Kemerovo Oblast','ru'),(75,'Сахалинская область','Sakhalin Oblast','ru'),(76,'Томская область','Tomsk Oblast','ru'),(77,'Оренбургская область','Orenburg Oblast','ru'),(78,'Тульская область','Tula Oblast','ru'),(79,'Республика Хакасия','Republic of Khakassia','ru'),(80,'Республика Чувашия','Chuvash Republic','ru'),(81,'Республика Бурятия','Republic of Buryatia','ru'),(82,'Республика Карелия','Republic of Karelia','ru'),(83,'Республика Мордовия','Mordovia','ru'),(84,'Республика Якутия','Yakutia','ru'),(85,'Республика Калмыкия','Kalmykia','ru'),(86,'서울','Seoul','kr'),(87,'부산','Busan','kr'),(88,'대구','Daegu','kr'),(89,'광주','Gwangju','kr'),(90,'대전','Daejeon','kr'),(91,'울산','Ulsan','kr'),(92,'인천','Incheon','kr'),(93,'세종','Sejong','kr'),(94,'경기','Gyeonggi-do','kr'),(95,'강원','Gangwon-do','kr'),(96,'충남','Chungcheongnam-do','kr'),(97,'충북','Chungcheongbuk-do','kr'),(98,'전남','Jeollanam-do','kr'),(99,'전북','Jeollabuk-do','kr'),(100,'경남','Gyeongsangnam-do','kr'),(101,'경북','Gyeongsangbuk-do','kr'),(102,'제주','Jeju-do','kr'),(103,'ঢাকা','Dhaka','bd'),(104,'চট্টগ্রাম','Chattogram','bd'),(105,'খুলনা','Khulna','bd'),(106,'রাজশাহী','Rajshahi','bd'),(107,'সিলেট','Sylhet','bd'),(108,'বরিশাল','Barishal','bd'),(109,'রংপুর','Rangpur','bd'),(110,'কুমিল্লা','Cumilla','bd'),(111,'নারায়ণগঞ্জ','Narayanganj','bd'),(112,'বগুড়া','Bogra','bd'),(113,'ময়মনসিংহ','Mymensingh','bd'),(114,'গাজীপুর','Gazipur','bd'),(115,'টাঙ্গাইল','Tangail','bd'),(116,'ফরিদপুর','Faridpur','bd'),(117,'কুষ্টিয়া','Kushtia','bd'),(118,'যশোর','Jashore','bd'),(119,'নোয়াখালী','Noakhali','bd'),(120,'চাঁদপুর','Chandpur','bd'),(121,'কক্সবাজার','Cox\'s Bazar','bd'),(122,'ফেনী','Feni','bd'),(123,'লক্ষ্মীপুর','Lakshmipur','bd'),(124,'দিনাজপুর','Dinajpur','bd'),(125,'ঠাকুরগাঁও','Thakurgaon','bd'),(126,'পাবনা','Pabna','bd'),(127,'শরীয়তপুর','Shariatpur','bd'),(128,'গোপালগঞ্জ','Gopalganj','bd'),(129,'মাদারীপুর','Madaripur','bd'),(130,'সাতক্ষীরা','Satkhira','bd'),(131,'পিরোজপুর','Pirojpur','bd'),(132,'ঝালকাঠি','Jhalokathi','bd'),(133,'ভোলা','Bhola','bd'),(134,'বরগুনা','Barguna','bd'),(135,'নেত্রকোণা','Netrokona','bd'),(136,'সুনামগঞ্জ','Sunamganj','bd'),(137,'মৌলভীবাজার','Moulvibazar','bd'),(138,'হবিগঞ্জ','Habiganj','bd'),(139,'গাইবান্ধা','Gaibandha','bd'),(140,'কুড়িগ্রাম','Kurigram','bd'),(141,'নওগাঁ','Naogaon','bd'),(142,'জয়পুরহাট','Joypurhat','bd'),(143,'নাটোর','Natore','bd'),(144,'চুয়াডাঙ্গা','Chuadanga','bd'),(145,'মেহেরপুর','Meherpur','bd'),(146,'মাগুরা','Magura','bd'),(147,'ঝিনাইদহ','Jhenaidah','bd'),(148,'শেরপুর','Sherpur','bd'),(149,'বাগেরহাট','Bagerhat','bd'),(150,'বান্দরবান','Bandarban','bd'),(151,'খাগড়াছড়ি','Khagrachhari','bd');
+INSERT INTO `places` VALUES (1,'Москва','Moscow','ru'),(2,'Санкт-Петербург','Saint Petersburg','ru'),(3,'Республика Татарстан','Republic of Tatarstan','ru'),(4,'Республика Башкортостан','Republic of Bashkortostan','ru'),(5,'Краснодарский край','Krasnodar Krai','ru'),(6,'Ростовская область','Rostov Oblast','ru'),(7,'Волгоградская область','Volgograd Oblast','ru'),(8,'Свердловская область','Sverdlovsk Oblast','ru'),(9,'Челябинская область','Chelyabinsk Oblast','ru'),(10,'Татарстан','Tatarstan','ru'),(11,'Пермский край','Perm Krai','ru'),(12,'Оренбургская область','Orenburg Oblast','ru'),(13,'Кемеровская область','Kemerovo Oblast','ru'),(14,'Ульяновская область','Ulyanovsk Oblast','ru'),(15,'Самарская область','Samara Oblast','ru'),(16,'Иркутская область','Irkutsk Oblast','ru'),(17,'Тамбовская область','Tambov Oblast','ru'),(18,'Рязанская область','Ryazan Oblast','ru'),(19,'Мурманская область','Murmansk Oblast','ru'),(20,'Калининградская область','Kaliningrad Oblast','ru'),(21,'Вологодская область','Vologda Oblast','ru'),(22,'Ленинградская область','Leningrad Oblast','ru'),(23,'Ярославская область','Yaroslavl Oblast','ru'),(24,'Костромская область','Kostroma Oblast','ru'),(25,'Нижегородская область','Nizhny Novgorod Oblast','ru'),(26,'Саратовская область','Saratov Oblast','ru'),(27,'Тюменская область','Tyumen Oblast','ru'),(28,'Архангельская область','Arkhangelsk Oblast','ru'),(29,'Псковская область','Pskov Oblast','ru'),(30,'Новосибирская область','Novosibirsk Oblast','ru'),(31,'Московская область','Moscow Oblast','ru'),(32,'Брянская область','Bryansk Oblast','ru'),(33,'Омская область','Omsk Oblast','ru'),(34,'Курская область','Kursk Oblast','ru'),(35,'Смоленская область','Smolensk Oblast','ru'),(36,'Тверская область','Tver Oblast','ru'),(37,'Калужская область','Kaluga Oblast','ru'),(38,'Воронежская область','Voronezh Oblast','ru'),(39,'Белгородская область','Belgorod Oblast','ru'),(40,'Костромская область','Kostroma Oblast','ru'),(41,'Астраханская область','Astrakhan Oblast','ru'),(42,'Республика Саха','Republic of Sakha','ru'),(43,'Хабаровский край','Khabarovsk Krai','ru'),(44,'Алтайский край','Altai Krai','ru'),(45,'Ставропольский край','Stavropol Krai','ru'),(47,'Северная Осетия','North Ossetia','ru'),(48,'Иркутская область','Irkutsk Oblast','ru'),(49,'Чеченская Республика','Chechen Republic','ru'),(50,'Дагестан','Dagestan','ru'),(51,'Кабардино-Балкарская Республика','Kabardino-Balkar Republic','ru'),(52,'Северная Осетия','North Ossetia','ru'),(53,'Калмыкия','Kalmykia','ru'),(54,'Тува','Tuva','ru'),(55,'Марий Эл','Mari El','ru'),(56,'Чувашская Республика','Chuvash Republic','ru'),(57,'Адыгея','Adygea','ru'),(58,'Карачаево-Черкесская Республика','Karachay-Cherkess Republic','ru'),(59,'Республика Коми','Republic of Komi','ru'),(60,'Башкортостан','Bashkortostan','ru'),(61,'Республика Мордовия','Republic of Mordovia','ru'),(62,'Удмуртская Республика','Udmurt Republic','ru'),(63,'Республика Калмыкия','Republic of Kalmykia','ru'),(64,'Республика Алтай','Republic of Altai','ru'),(65,'Липецкая область','Lipetsk Oblast','ru'),(66,'Томская область','Tomsk Oblast','ru'),(67,'Новгородская область','Novgorod Oblast','ru'),(68,'Курганская область','Kurgan Oblast','ru'),(69,'Забайкальский край','Zabaykalsky Krai','ru'),(70,'Еврейская автономная область','Jewish Autonomous Oblast','ru'),(71,'Астраханская область','Astrakhan Oblast','ru'),(72,'Амурская область','Amur Oblast','ru'),(73,'Пензенская область','Penza Oblast','ru'),(74,'Кемеровская область','Kemerovo Oblast','ru'),(75,'Сахалинская область','Sakhalin Oblast','ru'),(76,'Томская область','Tomsk Oblast','ru'),(77,'Оренбургская область','Orenburg Oblast','ru'),(78,'Тульская область','Tula Oblast','ru'),(79,'Республика Хакасия','Republic of Khakassia','ru'),(80,'Республика Чувашия','Chuvash Republic','ru'),(81,'Республика Бурятия','Republic of Buryatia','ru'),(82,'Республика Карелия','Republic of Karelia','ru'),(83,'Республика Мордовия','Mordovia','ru'),(84,'Республика Якутия','Yakutia','ru'),(85,'Республика Калмыкия','Kalmykia','ru'),(86,'서울','Seoul','kr'),(87,'부산','Busan','kr'),(88,'대구','Daegu','kr'),(89,'광주','Gwangju','kr'),(90,'대전','Daejeon','kr'),(91,'울산','Ulsan','kr'),(92,'인천','Incheon','kr'),(93,'세종','Sejong','kr'),(94,'경기','Gyeonggi-do','kr'),(95,'강원','Gangwon-do','kr'),(96,'충남','Chungcheongnam-do','kr'),(97,'충북','Chungcheongbuk-do','kr'),(98,'전남','Jeollanam-do','kr'),(99,'전북','Jeollabuk-do','kr'),(100,'경남','Gyeongsangnam-do','kr'),(101,'경북','Gyeongsangbuk-do','kr'),(102,'제주','Jeju-do','kr'),(103,'ঢাকা','Dhaka','bd'),(104,'চট্টগ্রাম','Chattogram','bd'),(105,'খুলনা','Khulna','bd'),(106,'রাজশাহী','Rajshahi','bd'),(107,'সিলেট','Sylhet','bd'),(108,'বরিশাল','Barishal','bd'),(109,'রংপুর','Rangpur','bd'),(110,'কুমিল্লা','Cumilla','bd'),(111,'নারায়ণগঞ্জ','Narayanganj','bd'),(112,'বগুড়া','Bogra','bd'),(113,'ময়মনসিংহ','Mymensingh','bd'),(114,'গাজীপুর','Gazipur','bd'),(115,'টাঙ্গাইল','Tangail','bd'),(116,'ফরিদপুর','Faridpur','bd'),(117,'কুষ্টিয়া','Kushtia','bd'),(118,'যশোর','Jashore','bd'),(119,'নোয়াখালী','Noakhali','bd'),(120,'চাঁদপুর','Chandpur','bd'),(121,'কক্সবাজার','Cox\'s Bazar','bd'),(122,'ফেনী','Feni','bd'),(123,'লক্ষ্মীপুর','Lakshmipur','bd'),(124,'দিনাজপুর','Dinajpur','bd'),(125,'ঠাকুরগাঁও','Thakurgaon','bd'),(126,'পাবনা','Pabna','bd'),(127,'শরীয়তপুর','Shariatpur','bd'),(128,'গোপালগঞ্জ','Gopalganj','bd'),(129,'মাদারীপুর','Madaripur','bd'),(130,'সাতক্ষীরা','Satkhira','bd'),(131,'পিরোজপুর','Pirojpur','bd'),(132,'ঝালকাঠি','Jhalokathi','bd'),(133,'ভোলা','Bhola','bd'),(134,'বরগুনা','Barguna','bd'),(135,'নেত্রকোণা','Netrokona','bd'),(136,'সুনামগঞ্জ','Sunamganj','bd'),(137,'মৌলভীবাজার','Moulvibazar','bd'),(138,'হবিগঞ্জ','Habiganj','bd'),(139,'গাইবান্ধা','Gaibandha','bd'),(140,'কুড়িগ্রাম','Kurigram','bd'),(141,'নওগাঁ','Naogaon','bd'),(142,'জয়পুরহাট','Joypurhat','bd'),(143,'নাটোর','Natore','bd'),(144,'চুয়াডাঙ্গা','Chuadanga','bd'),(145,'মেহেরপুর','Meherpur','bd'),(146,'মাগুরা','Magura','bd'),(147,'ঝিনাইদহ','Jhenaidah','bd'),(148,'শেরপুর','Sherpur','bd'),(149,'বাগেরহাট','Bagerhat','bd'),(150,'বান্দরবান','Bandarban','bd'),(151,'খাগড়াছড়ি','Khagrachhari','bd');
 /*!40000 ALTER TABLE `places` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_streaks`
+--
+
+DROP TABLE IF EXISTS `user_streaks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_streaks` (
+  `user_id` int NOT NULL,
+  `game_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country_code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `max_streak` int NOT NULL DEFAULT '0',
+  `attempts_count` int NOT NULL DEFAULT '0',
+  `correct_answers_count` int NOT NULL DEFAULT '0',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY `unique_user_game_country` (`user_id`,`game_type`,`country_code`),
+  KEY `user_streaks_countries_FK` (`country_code`),
+  CONSTRAINT `user_streaks_countries_FK` FOREIGN KEY (`country_code`) REFERENCES `countries` (`country_code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_streaks_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_streaks`
+--
+
+LOCK TABLES `user_streaks` WRITE;
+/*!40000 ALTER TABLE `user_streaks` DISABLE KEYS */;
+INSERT INTO `user_streaks` VALUES (14,'letter','ru',2,5,4,'2025-03-19 17:56:06'),(16,'letter','kr',1,4,2,'2025-03-19 17:54:15'),(17,'letter','bd',0,1,0,'2025-03-19 17:38:01'),(17,'letter','kr',2,2,2,'2025-03-19 17:43:04'),(17,'letter','ru',0,1,0,'2025-03-19 17:44:10'),(18,'letter','bd',0,1,0,'2025-03-19 18:00:12'),(18,'letter','ru',0,1,0,'2025-03-19 18:01:45');
+/*!40000 ALTER TABLE `user_streaks` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -98,13 +134,13 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,6 +149,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (14,'test@test.com','$2b$12$Qh2QNYz3javCgEdO7K8cRuEpjbOG0rIEeDiad9N5nv0lStLTnJCWG','2025-03-17 11:12:52'),(15,'test@example.com','$2b$12$ehUOAaRKqhBb7aIxxLP8eutHPOKogO3Nc9vP/EnoF1rBMB7SpDoWy','2025-03-18 15:57:33'),(16,'test2@test.com','$2b$12$QRu1oRjqJDeSsFJASZjYw.4OdYJjWOCq0iuCxhUJpiac6duFxTNQS','2025-03-18 16:50:20'),(17,'sample@sample.com','$2b$12$lWBBmJcngH9IT8sHbXMmKuP7PAW1omy0cQ6ipmltsz6d02CZIjG5.','2025-03-19 16:59:42'),(18,'sample2@sample.com','$2b$12$lGQUhe23MBuzEVeVXK5UMufrR1697k1yBYur17WtMult1dwZjqlNS','2025-03-19 17:59:52');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-15  5:26:01
+-- Dump completed on 2025-03-20  3:45:45
