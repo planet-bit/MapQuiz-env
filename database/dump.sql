@@ -122,7 +122,7 @@ CREATE TABLE `user_streaks` (
 
 LOCK TABLES `user_streaks` WRITE;
 /*!40000 ALTER TABLE `user_streaks` DISABLE KEYS */;
-INSERT INTO `user_streaks` VALUES (14,'letter','ru',2,5,4,'2025-03-19 17:56:06'),(16,'letter','kr',1,4,2,'2025-03-19 17:54:15'),(17,'letter','bd',0,1,0,'2025-03-19 17:38:01'),(17,'letter','kr',2,2,2,'2025-03-19 17:43:04'),(17,'letter','ru',0,1,0,'2025-03-19 17:44:10'),(18,'letter','bd',0,1,0,'2025-03-19 18:00:12'),(18,'letter','ru',0,1,0,'2025-03-19 18:01:45');
+INSERT INTO `user_streaks` VALUES (14,'letter','bd',1,6,2,'2025-03-21 00:33:35'),(14,'letter','kr',8,2,8,'2025-03-20 16:42:34'),(14,'letter','ru',2,5,4,'2025-03-19 17:56:06'),(14,'location','bd',0,6,0,'2025-03-19 18:54:38'),(14,'location','ru',0,2,0,'2025-03-19 18:54:54'),(16,'letter','kr',1,4,2,'2025-03-19 17:54:15'),(16,'letter','ru',16,1,16,'2025-03-21 06:12:00'),(17,'letter','bd',0,1,0,'2025-03-19 17:38:01'),(17,'letter','kr',2,2,2,'2025-03-19 17:43:04'),(17,'letter','ru',0,1,0,'2025-03-19 17:44:10'),(18,'letter','bd',0,1,0,'2025-03-19 18:00:12'),(18,'letter','ru',0,1,0,'2025-03-19 18:01:45'),(19,'letter','bd',0,1,0,'2025-03-21 06:55:46'),(19,'letter','kr',0,1,0,'2025-03-21 06:55:46'),(19,'letter','ru',0,1,0,'2025-03-21 06:55:46'),(19,'location','bd',0,1,0,'2025-03-21 06:55:46'),(19,'location','kr',0,1,0,'2025-03-21 06:55:46'),(19,'location','ru',0,1,0,'2025-03-21 06:55:46'),(20,'letter','bd',0,0,0,'2025-03-21 06:57:27'),(20,'letter','kr',0,0,0,'2025-03-21 06:57:27'),(20,'letter','ru',2,2,2,'2025-03-21 07:01:32'),(20,'location','bd',0,0,0,'2025-03-21 06:57:27'),(20,'location','kr',0,0,0,'2025-03-21 06:57:27'),(20,'location','ru',0,0,0,'2025-03-21 06:57:27');
 /*!40000 ALTER TABLE `user_streaks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,7 +140,7 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +149,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (14,'test@test.com','$2b$12$Qh2QNYz3javCgEdO7K8cRuEpjbOG0rIEeDiad9N5nv0lStLTnJCWG','2025-03-17 11:12:52'),(15,'test@example.com','$2b$12$ehUOAaRKqhBb7aIxxLP8eutHPOKogO3Nc9vP/EnoF1rBMB7SpDoWy','2025-03-18 15:57:33'),(16,'test2@test.com','$2b$12$QRu1oRjqJDeSsFJASZjYw.4OdYJjWOCq0iuCxhUJpiac6duFxTNQS','2025-03-18 16:50:20'),(17,'sample@sample.com','$2b$12$lWBBmJcngH9IT8sHbXMmKuP7PAW1omy0cQ6ipmltsz6d02CZIjG5.','2025-03-19 16:59:42'),(18,'sample2@sample.com','$2b$12$lGQUhe23MBuzEVeVXK5UMufrR1697k1yBYur17WtMult1dwZjqlNS','2025-03-19 17:59:52');
+INSERT INTO `users` VALUES (14,'test@test.com','$2b$12$Qh2QNYz3javCgEdO7K8cRuEpjbOG0rIEeDiad9N5nv0lStLTnJCWG','2025-03-17 11:12:52'),(15,'test@example.com','$2b$12$ehUOAaRKqhBb7aIxxLP8eutHPOKogO3Nc9vP/EnoF1rBMB7SpDoWy','2025-03-18 15:57:33'),(16,'test2@test.com','$2b$12$QRu1oRjqJDeSsFJASZjYw.4OdYJjWOCq0iuCxhUJpiac6duFxTNQS','2025-03-18 16:50:20'),(17,'sample@sample.com','$2b$12$lWBBmJcngH9IT8sHbXMmKuP7PAW1omy0cQ6ipmltsz6d02CZIjG5.','2025-03-19 16:59:42'),(18,'sample2@sample.com','$2b$12$lGQUhe23MBuzEVeVXK5UMufrR1697k1yBYur17WtMult1dwZjqlNS','2025-03-19 17:59:52'),(19,'koko@koko.com','$2b$12$Yumhn0DmBX.WwzJ1Y8IfS.n0CYraTJjcNSq1D0nCKij58rdU7L9QG','2025-03-21 06:55:46'),(20,'popo@popo.com','$2b$12$WhYMI41tPYNYch4eCAO.Ke4DXNAvPKN7sGj6acaqiM7GMcU4TC9w2','2025-03-21 06:57:27');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-20  3:45:45
+-- Dump completed on 2025-03-21 17:34:43
