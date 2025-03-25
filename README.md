@@ -21,6 +21,7 @@ MapQuiz-envリポジトリは、MapQuizアプリケーションに必要な環�
    git clone https://github.com/planet-bit/MapQuiz-backend.git
    cd MapQuiz-backend
    npm install
+   cp .env.sample .env
    cd ..
    ```
 
@@ -34,13 +35,14 @@ MapQuiz-envリポジトリは、MapQuizアプリケーションに必要な環�
    ```
 3. 環境変数ファイルの設定
 
-   MapQuiz-env リポジトリにはサンプルの環境変数ファイルが含まれています。まず .env.sample を .env にコピーして、必要に応じて設定を編集します。
+   env.sampleにはサンプルのデータベースの接続設定が格納されています。
+   
+   まず .env.sample を .env にコピーして、必要に応じて設定を編集します。
+
 
    ```sh
    cp .env.sample .env
    ```
-
-   .env ファイルには、バックエンドやデータベースの接続設定など、環境に依存する重要な情報が格納されています。必要に応じて設定を変更してください。
 
 4. 必要なパッケージをインストールします
 
