@@ -30,10 +30,10 @@ services:
       - "5173:5173"
     command: ["npm", "run", "dev", "--prefix", "backend"]
     depends_on:
-      mapquiz-mysql:
-        condition: service_healthy
+      - mapquiz-mysql
+
     env_file:
-      - .env
+      - ../MapQuiz-backend/.env
     networks:
       - mapquiz-network
 
