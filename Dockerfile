@@ -1,22 +1,20 @@
-# Node.js の公式イメージを使う（バージョンは適宜変更）
+# Node.js の公式イメージを使用
 FROM node:18
 
-# 作業ディレクトリを設定
+# 作業ディレクトリを作成し設定
 WORKDIR /app
 
-# package.json と package-lock.json をコピー
-COPY package*.json ./
+# バックエンドとフロントエンドのpackage.jsonを/appにコピー
+COPY ./MapQuiz-backend/package*.json /app/backend/
+COPY ./MapQuiz-frontend/package*.json /app/frontend/
 
-# 依存関係をインストール
-RUN npm install
+# バックエンドとフロントエンドの依存関係をインストール
+RUN cd /app/backend && npm install
+RUN cd /app/frontend && npm install
 
+# バックエンドとフロントエンドのソースコードを/appにコピー
+COPY ./MapQuiz-backend/ /app/backend/
+COPY ./MapQuiz-frontend/ /app/frontend/
 
-# ソースコードをコンテナ内にコピーする
-COPY . .
-
-
-# サーバーを公開するポート（Expressのデフォルトは 3000）
-EXPOSE 3000
-
-# アプリケーションの起動
-CMD ["npm", "run", "dev"]
+# 両方のサービスを同時に立ち上げる
+CMD cd /app/backend && npm run dev & cd /app/frontend && npm run dev
