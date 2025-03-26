@@ -21,7 +21,6 @@ MapQuiz-envリポジトリは、MapQuizアプリケーションに必要な環�
    git clone https://github.com/planet-bit/MapQuiz-backend.git
    cd MapQuiz-backend
    npm install
-   cp env.backend.sample .env.backend
    cd ..
    ```
 
@@ -41,7 +40,8 @@ MapQuiz-envリポジトリは、MapQuizアプリケーションに必要な環�
 
 
    ```sh
-   cp env.db.sample .env.db
+   cp .env.db.sample .env.db
+   cp .env.backend.sample .env.backend
    ```
 
 4. 必要なパッケージをインストールします
