@@ -1,22 +1,29 @@
-# Node.js の公式イメージを使う（バージョンは適宜変更）
-FROM node:18
+# Node.jsの公式イメージをベースにする
+FROM node:16
+
+# pm2のインストール（使わないなら削除OK）
+RUN npm install -g pm2
 
 # 作業ディレクトリを設定
 WORKDIR /app
 
-# package.json と package-lock.json をコピー
-COPY package*.json ./
-
 # 依存関係をインストール
-RUN npm install
+RUN git clone https://github.com/planet-bit/MapQuiz-frontend.git frontend \
+    && git clone https://github.com/planet-bit/MapQuiz-backend.git backend \
+    && cd frontend && npm install \
+    && cd ../backend && npm install
+
+# .env ファイルをコピー（volumes でマウントするなら削除OK）
+COPY .env_backend /app/backend/.env
+
+# 開発用のポートを開放
+EXPOSE 5173 3000
+
+# pm2 を使うなら
+CMD ["pm2-runtime", "start", "ecosystem.config.js"]
+
+# 使わないならこっち
+# CMD ["sh", "-c", "cd /app/backend && npm run dev & cd /app/frontend && npm run dev"]
 
 
-# ソースコードをコンテナ内にコピーする
-COPY . .
 
-
-# サーバーを公開するポート（Expressのデフォルトは 3000）
-EXPOSE 3000
-
-# アプリケーションの起動
-CMD ["npm", "run", "dev"]
