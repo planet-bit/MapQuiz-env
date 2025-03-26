@@ -5,7 +5,7 @@ services:
     container_name: mapquiz-mysql-container
     restart: always
     env_file: 
-      - .env
+      - .env.db
     ports:
       - "3307:3306"
     volumes:
@@ -34,7 +34,7 @@ services:
       mapquiz-mysql:
         condition: service_healthy
     env_file:
-      - ../MapQuiz-backend/.env
+      - .env.backend
     networks:
       - mapquiz-network
 
