@@ -4,8 +4,11 @@ services:
     image: mysql:8
     container_name: mapquiz-mysql-container
     restart: always
-    env_file: 
-      - .env.db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword  
+      MYSQL_DATABASE: mapquizdb         
+      MYSQL_USER: user                   
+      MYSQL_PASSWORD: password           
     ports:
       - "3307:3306"
     volumes:
@@ -14,12 +17,8 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     networks:
       - mapquiz-network
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      timeout: 10s
-      retries: 5
 
-  mapquiz-node:
+  mapquiz-app:
     build:
       context: ../
       dockerfile: ./MapQuiz-env/Dockerfile
