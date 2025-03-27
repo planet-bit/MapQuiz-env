@@ -8,28 +8,22 @@ MapQuiz-envリポジトリは、MapQuizアプリケーションに必要な環�
 
 ### 必要なツール
 
+- Node.js (推奨バージョン: v22.13.1)
+- npm
 - Docker
 - Docker Compose
 
 ### インストール手順
 
-1. バックエンドリポジトリをクローン
-
-   まず、MapQuiz-backend リポジトリをクローンします。このリポジトリは、API提供を担当します。
+1. 必要なリポジトリをクローン
 
    ```sh
+   git clone https://github.com/planet-bit/MapQuiz-frontend.git
    git clone https://github.com/planet-bit/MapQuiz-backend.git
-   ```
-
-2. リポジトリをクローン
-
-   次にMapQuiz-env リポジトリをクローンします。
-
-   ```sh
    git clone https://github.com/planet-bit/MapQuiz-env.git
-   cd MapQuiz-env
    ```
-3. 環境変数ファイルの設定
+
+2. 環境変数ファイルの設定
 
    env.sampleにはサンプルのバックエンドの接続設定、
    .env.db.sampleにはサンプルのデータベースの接続設定が格納されています。
@@ -39,11 +33,12 @@ MapQuiz-envリポジトリは、MapQuizアプリケーションに必要な環�
 
 
    ```sh
+   cd MapQuiz-env
    cp .env.sample ../MapQuiz-backend/.env
    cp .env.db.sample .env.db
    ```
 
-5. Dockerコンテナの起動
+3. Dockerコンテナの起動
 
    Docker Composeを使用して、すべてのコンテナ（バックエンド、フロントエンド、データベース）を立ち上げます。
 
@@ -56,7 +51,7 @@ MapQuiz-envリポジトリは、MapQuizアプリケーションに必要な環�
    - mapquiz-node-container（フロントエンド、バックエンド）
    - mapquiz-mysql-container（データベース）
 
-6. バックエンドアプリの確認
+4. バックエンドアプリの確認
 
    コンテナが起動した後、Node.jsのバックエンドアプリケーションが実行されます。
    
