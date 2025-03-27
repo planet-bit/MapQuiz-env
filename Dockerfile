@@ -16,5 +16,11 @@ RUN cd /app/frontend && npm install
 COPY ./MapQuiz-backend/ /app/backend/
 COPY ./MapQuiz-frontend/ /app/frontend/
 
-# 両方のサービスを同時に立ち上げる
-CMD cd /app/backend && npm run dev & cd /app/frontend && npm run dev
+# スタートスクリプトをコピー
+COPY ./MapQuiz-env/start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+
+# スクリプトを実行
+CMD ["sh", "/app/start.sh"]
+
+

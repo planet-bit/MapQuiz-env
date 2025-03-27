@@ -19,8 +19,6 @@ MapQuiz-envリポジトリは、MapQuizアプリケーションに必要な環�
 
    ```sh
    git clone https://github.com/planet-bit/MapQuiz-backend.git
-   cd MapQuiz-backend
-   cd ..
    ```
 
 2. リポジトリをクローン
@@ -33,22 +31,17 @@ MapQuiz-envリポジトリは、MapQuizアプリケーションに必要な環�
    ```
 3. 環境変数ファイルの設定
 
-   env.sampleにはサンプルのデータベースの接続設定が格納されています。
+   env.sampleにはサンプルのバックエンドの接続設定、
+   .env.db.sampleにはサンプルのデータベースの接続設定が格納されています。
    
-   まず .env.sample を .env にコピーして、必要に応じて設定を編集します。
+   まず .env.sample を /MapQuiz-backend/.env にコピー、
+   次に .env.db.sample を /MapQuiz-env/.env.db にコピーします。
 
 
    ```sh
-   cp .env.db.sample .env.db
    cp .env.sample ../MapQuiz-backend/.env
+   cp .env.db.sample .env.db
    ```
-
-4. 必要なパッケージをインストールします
-
-   ```sh
-   npm install
-   ```
-
 
 5. Dockerコンテナの起動
 
@@ -60,18 +53,17 @@ MapQuiz-envリポジトリは、MapQuizアプリケーションに必要な環�
 
    これにより、以下のコンテナが起動します：
 
-   - mapquiz-node-container（バックエンド）
+   - mapquiz-node-container（フロントエンド、バックエンド）
    - mapquiz-mysql-container（データベース）
-
-   コンテナが正常に起動すると、バックエンドはポート 3000 で動作を開始します。
 
 6. バックエンドアプリの確認
 
    コンテナが起動した後、Node.jsのバックエンドアプリケーションが実行されます。
    
-   mapquiz-node-containerがポート番号3000でリッスンします。
    
-   ブラウザでは、[http://localhost:3000](http://localhost:3000) を開いて、APIが動作していることを確認してください。
+   バックエンドへは、http://localhost:3000 を開いて、APIが動作していることを確認してください。
+
+   フロントエンドへは http://localhost:5173 でアプリにアクセスできます。
    
 ## 設定項目
 
@@ -93,7 +85,7 @@ MapQuiz-env には、以下のコンテナ設定が含まれています。
 
 - docker-compose.yml
 
-   docker-compose.yml ファイルは、バックエンド、データベースコンテナを一括で管理する設定ファイルです。このファイルを使用して、アプリケーション全体をコンテナ内で動かすことができます。
+   docker-compose.yml ファイルは、フロントエンド、バックエンド、データベースコンテナを一括で管理する設定ファイルです。このファイルを使用して、アプリケーション全体をコンテナ内で動かすことができます。
 
 - Dockerfile
-   バックエンド（Node.js）用のDockerfileが含まれており、アプリケーションの依存関係をインストールして実行します。
+   フロントエンド（Vue.js）とバックエンド（Node.js）用のDockerfileが含まれており、アプリケーションの依存関係をインストールして実行します。

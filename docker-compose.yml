@@ -17,6 +17,10 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     networks:
       - mapquiz-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
 
   mapquiz-app:
     build:
@@ -28,9 +32,9 @@ services:
     ports:
       - "3000:3000"
       - "5173:5173"
-    command: ["npm", "run", "dev", "--prefix", "backend"]
     depends_on:
-      - mapquiz-mysql
+      mapquiz-mysql:
+        condition: service_healthy
 
     env_file:
       - ../MapQuiz-backend/.env
