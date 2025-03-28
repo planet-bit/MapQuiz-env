@@ -12,15 +12,10 @@ COPY ./MapQuiz-frontend/package*.json /app/frontend/
 RUN cd /app/backend && npm install
 RUN cd /app/frontend && npm install
 
-# バックエンドとフロントエンドのソースコードを/appにコピー
+# バックエンドのソースコードを/appにコピー
 COPY ./MapQuiz-backend/ /app/backend/
-COPY ./MapQuiz-frontend/ /app/frontend/
 
-# スタートスクリプトをコピー
-COPY ./MapQuiz-env/start.sh /app/start.sh
-RUN chmod +x /app/start.sh
-
-# スクリプトを実行
-CMD ["sh", "/app/start.sh"]
+# コンテナ起動時にバックエンドとフロントエンドを実行
+CMD sh -c "node /app/backend/index.cjs & npm run dev --prefix /app/frontend"
 
 

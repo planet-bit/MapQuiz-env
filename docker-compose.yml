@@ -26,20 +26,21 @@ services:
     build:
       context: ../
       dockerfile: ./MapQuiz-env/Dockerfile
-    container_name: mapquiz-node-container
+    container_name: mapquiz-app-container
     working_dir: /app
-
     ports:
       - "3000:3000"
       - "5173:5173"
     depends_on:
       mapquiz-mysql:
         condition: service_healthy
-
     env_file:
       - ../MapQuiz-backend/.env
     networks:
       - mapquiz-network
+    volumes:
+      - ../MapQuiz-frontend:/app/frontend  
+      - /app/frontend/node_modules 
 
 volumes:
   mysql_data:
