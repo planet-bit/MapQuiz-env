@@ -12,10 +12,13 @@ COPY ./MapQuiz-frontend/package*.json /app/frontend/
 RUN cd /app/backend && npm install
 RUN cd /app/frontend && npm install
 
+# PM2のグローバルインストール
+RUN npm install -g pm2
+
 # バックエンドのソースコードを/appにコピー
 COPY ./MapQuiz-backend/ /app/backend/
 
-# コンテナ起動時にバックエンドとフロントエンドを実行
-CMD sh -c "node /app/backend/index.cjs & npm run dev --prefix /app/frontend"
+# コンテナ起動時にPM2でバックエンドを起動、フロントエンドも同時起動
+CMD ["sh", "-c", "pm2 start /app/backend/index.cjs && npm run dev --prefix /app/frontend"]
 
 
