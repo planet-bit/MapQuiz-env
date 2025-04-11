@@ -41,6 +41,9 @@ services:
     volumes:
       - ../MapQuiz-frontend:/app/frontend  
       - /app/frontend/node_modules 
+      - ../MapQuiz-backend:/app/backend  
+      - /app/backend/node_modules
+
 
 volumes:
   mysql_data:
