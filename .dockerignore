@@ -13,3 +13,6 @@ node_modules
 # 一時ファイルやキャッシュファイルを除外
 .DS_Store
 Thumbs.db
+
+certbot/conf
+certbot/
